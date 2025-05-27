@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Task 8 - User Preferences</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 400px;
+      margin: 20px auto;
+      padding: 10px;
+    }
+    select, button {
+      width: 100%;
+      margin-top: 10px;
+      padding: 8px;
+      font-size: 1em;
+    }
+  </style>
+</head>
+<body>
+  <h2>Select Your Preferred Event Type</h2>
+  <select id="eventTypeSelect">
+    <option value="">-- Select an event --</option>
+    <option value="cleanup">City Park Cleanup</option>
+    <option value="artfair">Local Art Fair</option>
+    <option value="market">Farmers Market</option>
+  </select>
+
+  <button id="clearPrefsBtn">Clear Preferences</button>
+
+  <script>
+    const select = document.getElementById('eventTypeSelect');
+    const clearBtn = document.getElementById('clearPrefsBtn');
+
+    window.onload = () => {
+      const saved = localStorage.getItem('preferredEvent');
+      if (saved) {
+        select.value = saved;
+      }
+    };
+
+    select.addEventListener('change', () => {
+      const val = select.value;
+      if (val) {
+        localStorage.setItem('preferredEvent', val);
+        sessionStorage.setItem('sessionEvent', val);
+      }
+    });
+
+    clearBtn.addEventListener('click', () => {
+      localStorage.removeItem('preferredEvent');
+      sessionStorage.removeItem('sessionEvent');
+      select.value = "";
+      alert('Preferences cleared!');
+    });
+  </script>
+</body>
+</html>

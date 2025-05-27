@@ -1,0 +1,87 @@
+1.Initialize npm project:
+
+bash
+Copy
+Edit
+mkdir bootstrap-sass-project
+cd bootstrap-sass-project
+npm init -y
+2.Install Bootstrap and Sass:
+
+bash
+Copy
+Edit
+npm install bootstrap sass
+3.Create your project structure:
+
+pgsql
+Copy
+Edit
+bootstrap-sass-project/
+├── node_modules/
+├── scss/
+│   └── custom.scss
+├── css/
+│   └── custom.css (will be generated)
+├── index.html
+├── package.json
+└── package-lock.json
+4.In scss/custom.scss, import Bootstrap’s Sass files:
+
+scss
+Copy
+Edit
+// custom.scss
+
+// Import Bootstrap's functions first
+@import "../node_modules/bootstrap/scss/functions";
+
+// Import Bootstrap variables to customize if needed
+@import "../node_modules/bootstrap/scss/variables";
+
+// Optional: override some Bootstrap variables here
+$primary: #ff6347;  // tomato red color
+
+// Import the rest of Bootstrap
+@import "../node_modules/bootstrap/scss/bootstrap";
+5.Compile Sass to CSS using the Sass CLI:
+
+bash
+Copy
+Edit
+npx sass scss/custom.scss css/custom.css
+6.Create a simple index.html to use the compiled CSS:
+
+html
+Copy
+Edit
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bootstrap Sass Customization</title>
+  <link rel="stylesheet" href="css/custom.css" />
+</head>
+<body>
+  <div class="container py-5">
+    <h1 class="text-primary">Hello, Bootstrap with Sass!</h1>
+    <button class="btn btn-primary">Primary Button</button>
+  </div>
+</body>
+</html>
+EXERCISE 19.2
+To customize Bootstrap variables:
+
+Create a new _custom-variables.scss file (or just add in your custom.scss) before importing Bootstrap.
+// scss/custom.scss
+
+@import "../node_modules/bootstrap/scss/functions";
+
+// Override variables here
+$primary: #007bff;      // Change primary color
+$border-radius: 1.5rem; // Bigger border radius for buttons/cards
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+Then recompile with:
+npx sass scss/custom.scss css/custom.css

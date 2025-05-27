@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Task 9 - Geolocation for Event Mapping</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    #output {
+      margin-top: 1em;
+      font-weight: bold;
+    }
+    button {
+      padding: 10px 15px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Find Nearby Events</h1>
+  <button id="findEventsBtn">Find Nearby Events</button>
+  <div id="output"></div>
+
+  <script>
+    const btn = document.getElementById('findEventsBtn');
+    const output = document.getElementById('output');
+
+    function success(position) {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+      output.textContent = `Your coordinates are:\nLatitude: ${latitude.toFixed(5)}, Longitude: ${longitude.toFixed(5)}`;
+    }
+
+    function error(err) {
+      switch(err.code) {
+        case err.PERMISSION_DENIED:
+          output.textContent = "Error: Permission denied. Please allow location access.";
+          break;
+        case err.POSITION_UNAVAILABLE:
+          output.textContent = "Error: Position unavailable.";
+          break;
+        case err.TIMEOUT:
+          output.textContent = "Error: Request timed out.";
+          break;
+        default:
+          output.textContent = "An unknown error occurred.";
+      }
+    }
+
+    btn.addEventListener('click', () => {
+      if (!navigator.geolocation) {
+        output.textContent = "Geolocation is not supported by your browser.";
+        return;
+      }
+
+      output.textContent = "Locating…";
+
+      navigator.geolocation.getCurrentPosition(success, error, {
+        enableHighAccuracy: true,
+        timeout: 10000,   
+        maximumAge: 0
+      });
+    });
+  </script>
+</body>
+</html>

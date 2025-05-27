@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Task 4 - Image Gallery</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 2em;
+    }
+    td {
+      padding: 10px;
+      text-align: center;
+      vertical-align: top;
+    }
+    .event-image {
+      width: 150px;
+      height: 100px;
+      border: 3px solid #555;
+      border-radius: 8px;
+      object-fit: cover;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .event-image:hover {
+      transform: scale(1.05);
+    }
+    figcaption {
+      margin-top: 6px;
+      font-style: italic;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <section id="gallery">
+    <h2>Community Events Gallery</h2>
+    <table>
+      <tr>
+        <td>
+          <img src="images/event1.jpeg" alt="City Park Cleanup" title="City Park Cleanup" class="event-image" />
+          <figcaption>City Park Cleanup</figcaption>
+        </td>
+        <td>
+          <img src="images/event2.jpeg" alt="Local Art Fair" title="Local Art Fair" class="event-image" />
+          <figcaption>Local Art Fair</figcaption>
+        </td>
+        <td>
+          <img src="images/event3.jpeg" alt="Farmers Market" title="Farmers Market" class="event-image" />
+          <figcaption>Farmers Market</figcaption>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <img src="images/event4.jpeg" alt="Music Festival" title="Music Festival" class="event-image" />
+          <figcaption>Music Festival</figcaption>
+        </td>
+        <td>
+          <img src="images/event5.jpeg" alt="Charity Run" title="Charity Run" class="event-image" />
+          <figcaption>Charity Run</figcaption>
+        </td>
+        <td>
+          <img src="images/event6.jpeg" alt="Neighborhood BBQ" title="Neighborhood BBQ" class="event-image" />
+          <figcaption>Neighborhood BBQ</figcaption>
+        </td>
+      </tr>
+    </table>
+  </section>
+</body>
+</html>

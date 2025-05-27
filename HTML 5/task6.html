@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Task 6 - Event Feedback with Events Handling</title>
+  <style>
+    #feedbackForm {
+      max-width: 400px;
+      margin: 20px auto;
+      padding: 15px;
+      border: 2px solid #444;
+      border-radius: 8px;
+    }
+    label, select, input, textarea, button {
+      display: block;
+      width: 100%;
+      margin-bottom: 10px;
+      font-size: 1em;
+    }
+    #charCount {
+      font-size: 0.9em;
+      color: #555;
+      margin-bottom: 10px;
+    }
+    img {
+      width: 150px;
+      cursor: pointer;
+      border: 2px solid #333;
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+    }
+  </style>
+</head>
+<body>
+  <form id="feedbackForm">
+    <h2>Event Feedback</h2>
+
+    <label for="phone">Phone Number:</label>
+    <input type="tel" id="phone" name="phone" placeholder="e.g. 123-456-7890" required onblur="validatePhone()" />
+
+    <label for="eventSelect">Select Event:</label>
+    <select id="eventSelect" onchange="displayFee()">
+      <option value="">-- Select --</option>
+      <option value="cleanup" data-fee="Free">City Park Cleanup (Free)</option>
+      <option value="artfair" data-fee="$5">Local Art Fair ($5)</option>
+      <option value="market" data-fee="$3">Farmers Market ($3)</option>
+    </select>
+
+    <button type="button" id="submitBtn" onclick="submitFeedback()">Submit Feedback</button>
+
+    <p id="feeDisplay"></p>
+
+    <label for="feedback">Your Feedback:</label>
+    <textarea id="feedback" rows="4" onkeydown="countChars()" placeholder="Type your feedback here..."></textarea>
+    <div id="charCount">Characters typed: 0</div>
+  </form>
+
+  <img src="event-image.jpg" alt="Event" ondblclick="enlargeImage(this)" title="Double-click to enlarge" />
+
+  <script>
+    function validatePhone() {
+      const phone = document.getElementById('phone').value;
+      const phonePattern = /^\d{3}-\d{3}-\d{4}$/;
+      if (!phonePattern.test(phone)) {
+        alert('Please enter a valid phone number in format XXX-XXX-XXXX.');
+        document.getElementById('phone').focus();
+      }
+    }
+
+    function displayFee() {
+      const select = document.getElementById('eventSelect');
+      const selectedOption = select.options[select.selectedIndex];
+      const fee = selectedOption.getAttribute('data-fee') || '';
+      document.getElementById('feeDisplay').textContent = fee ? `Event Fee: ${fee}` : '';
+    }
+
+    function submitFeedback() {
+      alert('Thank you for your feedback!');
+    }
+
+    function enlargeImage(img) {
+      if (img.style.transform === 'scale(2)') {
+        img.style.transform = 'scale(1)';
+      } else {
+        img.style.transform = 'scale(2)';
+      }
+    }
+
+    function countChars() {
+      const textArea = document.getElementById('feedback');
+      const count = textArea.value.length;
+      document.getElementById('charCount').textContent = `Characters typed: ${count}`;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Task 10 - Debugging with Chrome DevTools</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    #log {
+      background: #f0f0f0;
+      border: 1px solid #ccc;
+      padding: 10px;
+      height: 100px;
+      overflow-y: auto;
+      margin-top: 10px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <h1>Debugging Demo</h1>
+  <button id="testBtn">Click Me</button>
+  <div id="log"></div>
+
+  <script>
+    const btn = document.getElementById('testBtn');
+    const logDiv = document.getElementById('log');
+
+    let clickCount = 0;
+
+    function log(message) {
+      const p = document.createElement('p');
+      p.textContent = message;
+      logDiv.appendChild(p);
+      console.log(message); 
+    }
+
+    btn.addEventListener('click', () => {
+      clickCount++;
+      log(`Button clicked ${clickCount} time(s)`);
+
+      debugger;
+
+      if (clickCount === 3) {
+        log('You reached 3 clicks! Breakpoint here.');
+
+      }
+    });
+
+  </script>
+</body>
+</html>
